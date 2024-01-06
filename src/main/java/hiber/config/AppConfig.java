@@ -28,10 +28,10 @@ public class AppConfig {
    @Bean
    public DataSource getDataSource() {
       DriverManagerDataSource dataSource = new DriverManagerDataSource();
-      dataSource.setDriverClassName(env.getProperty("db.driver"));
-      dataSource.setUrl(env.getProperty("db.url"));
-      dataSource.setUsername(env.getProperty("db.username"));
-      dataSource.setPassword(env.getProperty("db.password"));
+      dataSource.setDriverClassName(env.getProperty("hibernate.connection.driver_class"));
+      dataSource.setUrl(env.getProperty("hibernate.connection.url"));
+      dataSource.setUsername(env.getProperty("hibernate.connection.username"));
+      dataSource.setPassword(env.getProperty("hibernate.connection.password"));
       return dataSource;
    }
 
