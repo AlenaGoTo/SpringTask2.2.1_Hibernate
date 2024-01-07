@@ -12,6 +12,9 @@ public class Car {
     @Column(name = "model")
     private String model;
 
+    @OneToOne//(mappedBy="car") // с mappedBy поле для ключа создастся только у владельца, т.е. юзера
+    private User user;
+
     public Car() {}
 
     public Car(String model) {
@@ -32,6 +35,14 @@ public class Car {
 
     public void setSeries(int series) {
         this.series = series;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

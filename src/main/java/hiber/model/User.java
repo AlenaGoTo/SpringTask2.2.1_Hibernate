@@ -19,6 +19,10 @@ public class User {
    @Column(name = "email")
    private String email;
 
+   @OneToOne(cascade = CascadeType.ALL) // cascade сохраняет дочерний car в БД при сохранении его родителя user-а.
+   //@JoinColumn(name = "car_series") // если хотим переименовать поле в БД
+   private Car car;
+
    public User() {}
    
    public User(String firstName, String lastName, String email) {
@@ -57,5 +61,16 @@ public class User {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   public Car getCar() {
+      return car;
+   }
+
+   public User setCar(Car car) {
+      this.car = car;
+      // чтобы при двусторонней oneToOne в таблице cars заполнялись ключи на юзера (а то будет null)
+      if (car.getUser() != this) this.car.setUser(this);
+      return this;
    }
 }
