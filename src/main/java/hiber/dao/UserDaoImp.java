@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 @Repository
@@ -26,20 +27,21 @@ public class UserDaoImp implements UserDao {
       TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
       return query.getResultList();
    }
-   @Override
-   @SuppressWarnings("unchecked")
-   public User userByCar(Car car) {
-      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User where car = :car");
-      query.setParameter("car", car);
-      return query.getSingleResult();
-   }
 
    @Override
    @SuppressWarnings("unchecked")
-   public List<User> userByCarModel(String model) {
-      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("FROM User where car.series in (select series from Car where model = :model)");
+   public User userByCar(String model, int series) {
+      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("FROM User where car.series in (select series from Car where model = :model and series = :series)");
       query.setParameter("model", model);
-      return query.getResultList();
+      query.setParameter("series", series);
+      User user = null;
+      try {
+         user = query.getSingleResult();
+      } catch (Exception ex) {
+         //System.out.printf("User с Car(model – %s, series – %s) не найден\n", model, series);
+         //ex.printStackTrace();
+      }
+      return user;
    }
 
 }
