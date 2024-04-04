@@ -12,8 +12,9 @@ public class Car {
     @Column(name = "model")
     private String model;
 
-    @OneToOne//(mappedBy="car") // с mappedBy поле для ключа создастся только у владельца, т.е. юзера
-    private User user;
+    // если нужно создать внешний ключ для двусторонней связи
+    //@OneToOne(mappedBy="car") // с mappedBy поле для ключа создастся только у владельца, т.е. юзера
+    //private User user;
 
     public Car() {}
 
@@ -37,13 +38,13 @@ public class Car {
         this.series = series;
     }
 
-    public User getUser() {
+    /*public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }
+    }*/
 
     @Override
     public String toString() {
