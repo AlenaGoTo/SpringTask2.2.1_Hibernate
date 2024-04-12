@@ -74,4 +74,12 @@ public class User {
       //if (car.getUser() != this) this.car.setUser(this);
       return this;
    }
+
+   @Override
+   public String toString() {
+      return "firstName = " + firstName +
+              ", lastName = " + lastName +
+              ", email = " + email +
+              ", car = " + car.toString();
+   }
 }

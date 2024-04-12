@@ -38,7 +38,7 @@ public class UserDaoImp implements UserDao {
       try {
          user = query.getSingleResult();
       } catch (Exception ex) {
-         //System.out.printf("User с Car(model – %s, series – %s) не найден\n", model, series);
+         System.out.printf("User с Car(model – %s, series – %s) не найден\n", model, series);
          //ex.printStackTrace();
       }
       return user;
