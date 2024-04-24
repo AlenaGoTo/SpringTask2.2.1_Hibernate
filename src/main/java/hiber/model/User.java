@@ -24,6 +24,11 @@ public class User {
    //@JoinColumn(name = "car_series") // если хотим переименовать поле в БД
    private Car car;
 
+   /*
+   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") // cascade сохраняет дочерний car в БД при сохранении его родителя user-а.
+   private List<Car> cars = new ArrayList<>();
+   */
+
    public User() {}
    
    public User(String firstName, String lastName, String email) {
@@ -74,6 +79,19 @@ public class User {
       //if (car.getUser() != this) this.car.setUser(this);
       return this;
    }
+
+   /* // Для @OneToMany
+   public List<Car> getCar() {
+      return cars;
+   }
+
+   public User setCar(Car car) {
+      car.setUser(this);
+      cars.add(car);
+      // чтобы при двусторонней oneToOne в таблице cars заполнялись ключи на юзера (а то будет null)
+      //if (car.getUser() != this) this.car.setUser(this);
+      return this;
+   }*/
 
    @Override
    public String toString() {

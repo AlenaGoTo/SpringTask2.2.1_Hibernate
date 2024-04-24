@@ -16,6 +16,9 @@ public class Car {
     //@OneToOne(mappedBy="car") // с mappedBy поле для ключа создастся только у владельца, т.е. юзера
     //private User user;
 
+    //@ManyToOne//(cascade = CascadeType.ALL)
+   //private User user;
+
     public Car() {}
 
     public Car(String model) {
